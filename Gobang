@@ -1,2 +1,2 @@
 #!/bin/bash
-java -jar Gobang.jar -u $@
+java -jar Gobang.jar $1 $2 $3

@@ -31,10 +31,23 @@ public class AI extends Player {
 		}
 
 		// System.out.println();
-		super.move(game, AI_PLAYER, bestMove.x, bestMove.y);
 		int[] store = new int[2];
+		int size = game.getSize();
+		/*	if (bestMove == null){
+		    super.move(game, AI_PLAYER, size/2, size/2);
+		    store[0] = size/2+1;
+		    store[1] = size/2+1;
+		    }*/
+		/*else{*/
+		int x, y;
+		if(bestMove.x == 0)
+		    x = bestMove.x + 1
+			;
+		if(bestMove.y == 0)
+		    y = bestMove.y + 1;
+		super.move(game, AI_PLAYER, bestMove.x, bestMove.y);
 		store[0] = bestMove.x;
-		store[1] = bestMove.y;
+		store[1] = bestMove.y;/*}*/
 		return store;
 	}
 

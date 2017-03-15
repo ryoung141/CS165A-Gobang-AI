@@ -6,22 +6,22 @@ import java.lang.String;
 public class Game{
     
     public static void main(String [] args){
-	String a = "0abcdefghijklmnopqrstuvwxyz";
+	String a = "abcdefghijklmnopqrstuvwxyz";
 	String [] alphabet = a.split("");
 	String a2 = "abcdefghijklmnopqrstuvwxyz";
 	String [] balphabet = a2.split("");
 
 	int order = 1;
-	int board_size = 0;
+	int board_size = 11;
 	if (args.length >= 1 && args[0].equals("-n")){
 	    board_size = Integer.parseInt(args[1]);
-	    if (args.length >= 2 && args[2].equals("-l")){
+	    if (args.length > 2 && args[2].equals("-l")){
 		order = 2;
 	    }
 	}
 	else if (args.length >= 1 && args[0].equals("-l")){
 	    order = 2;
-	    if (args.length >= 2 && args[1].equals("-n"))
+	    if (args.length > 2 && args[1].equals("-n"))
 		board_size = Integer.parseInt(args[2]);
 	}
 	else
@@ -43,6 +43,7 @@ public class Game{
 		System.out.println("robos turn");
 		ai_move_store = ai.move();
 		String b = balphabet[ai_move_store[0]];
+		//	System.out.println("DEBUGGING: " + "ai_move_store[0]:" + ai_move_store[0]);
 		System.out.println(board.toString());
 		System.out.println("Move played: " + b + ai_move_store[1]);
 		System.out.println("Please enter move: ");
@@ -61,22 +62,7 @@ public class Game{
 		}
 		System.out.println(board.toString());
 		System.out.println("Move played: " + h_move);
-		//TODO: print given moves and board
-		/*	else{
-			System.out.println("Error: invalid input");
-		    System.out.println("Input should be of the format: letternumber");
-		    System.out.println("EX: a5");
-		    System.out.println("Please enter move: ");
-		    h_move = input.next();
-		    char letter = h_move.charAt(0);
-		    if(letter >= 'A' && letter <='Z')
-		    x = (int) letter - 'A' + 1;
-		    if(letter >= 'a' && letter <= 'z')
-		    x = (int) letter - 'a' + 1;
-			y = Integer.parseInt(h_move[1]);
-		    if (board.getBoard(true)[x][y] >=0 && board.getWinner() == 0)
-		    human.move(x, y);
-			} */
+		
 	    }
 	}
 	if (order == 1){
@@ -92,6 +78,10 @@ public class Game{
 		y = storage;
 		char temp = h_move.charAt(1);
 		x = temp - '0';
+		if (Board.isValid(x, y) == false){
+		    System.out.println("Invalid move, terminating program");
+		    System.exit(0);
+		}
 		if (board.getBoard(true)[x][y] >=0 && board.getWinner() == 0){
 		    human.move(x, y);
 		}
@@ -99,11 +89,10 @@ public class Game{
 		System.out.println("Move played: " + h_move);
 		System.out.println("robos turn");
 		ai_move_store = ai.move();
-		String b = balphabet[ai_move_store[0]];
+		String b = balphabet[ai_move_store[1]];
 		System.out.println(board.toString());
-		System.out.print("Move played: " + b + ai_move_store[1]);
-		//TODO: print given moves and board
-		}
+		System.out.print("Move played: " + b + ai_move_store[0]);
+	    }
 	}
     }
 }
