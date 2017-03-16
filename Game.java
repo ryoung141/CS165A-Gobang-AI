@@ -91,7 +91,7 @@ public class Game{
 		ai_move_store = ai.move();
 		String b = balphabet[ai_move_store[1]];
 		System.out.println(board.toString());
-		System.out.print("Move played: " + b + ai_move_store[0]);
+		System.out.println("Move played: " + b + ai_move_store[0]);
 	    }
 	}
     }

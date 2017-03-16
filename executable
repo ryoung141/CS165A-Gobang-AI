@@ -1,2 +1,0 @@
-#!/bin/bash
-java -jar Gobang_test.jar -d 2 $@
